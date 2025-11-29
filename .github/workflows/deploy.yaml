@@ -11,17 +11,20 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Debug OIDC token
-        run: |
-          echo "Repository: $GITHUB_REPOSITORY"
-          echo "Ref: $GITHUB_REF"
-          gcloud auth print-identity-token
+
 
       - name: Authenticate to Google Cloud
         uses: google-github-actions/auth@v2
         with:
           workload_identity_provider: "projects/478055754796/locations/global/workloadIdentityPools/github-pool/providers/githubidentityprovider"
           service_account: "studynodejsserviceaccount@study-nodejs-479620.iam.gserviceaccount.com"
+
+      - name: Debug OIDC token
+        run: |
+          echo "Repository: $GITHUB_REPOSITORY"
+          echo "Ref: $GITHUB_REF"
+          gcloud auth print-identity-token
+
 
       - name: Deploy to Cloud Run
         run: |
