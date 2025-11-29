@@ -9,5 +9,5 @@ app.listen(port, ()=>{
 )
 
 function handleIndex(req, res) {
-    return res.send('Test GitHub Action - test 01')
+    return res.send('Test GitHub Action - test 02')
 }
