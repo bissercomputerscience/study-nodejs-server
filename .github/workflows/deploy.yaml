@@ -18,11 +18,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # 2️⃣ Unset стар JSON ключ (ако има)
+      #  Unset стар JSON ключ (ако има)
       - name: Unset old credentials
         run: unset GOOGLE_APPLICATION_CREDENTIALS
 
-      # 3️⃣ Authenticate към GCP чрез WIF
+      # Authenticate към GCP чрез WIF
       - name: Authenticate to Google Cloud
         uses: google-github-actions/auth@v2
         with:
