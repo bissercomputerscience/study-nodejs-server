@@ -19,5 +19,8 @@ jobs:
           workload_identity_provider: "projects/478055754796/locations/global/workloadIdentityPools/github-pool/providers/githubidentityprovider"
           service_account: "studynodejsserviceaccount@study-nodejs-479620.iam.gserviceaccount.com"
 
-
+      - name: Submit to Cloud Run
+        run: |
+          gcloud builds submit \
+            --tag europe-west1-docker.pkg.dev/study-nodejs-479620/bisser-repo/nodejs-server:latest
 
