@@ -14,7 +14,7 @@ jobs:
       - name: Debug OIDC token
         run: |
           echo "Repository: $GITHUB_REPOSITORY"
-          echo "Ref: $GITHUB_REF
+          echo "Ref: $GITHUB_REF"
 
       - name: Authenticate to Google Cloud
         uses: google-github-actions/auth@v2
