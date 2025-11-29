@@ -22,12 +22,6 @@ jobs:
       - name: Unset old credentials
         run: unset GOOGLE_APPLICATION_CREDENTIALS
 
-      - name: Print OIDC ID Token payload
-        run: |
-          ID_TOKEN=$(gcloud auth print-identity-token --audiences "https://token.actions.githubusercontent.com")
-          echo "ID Token payload:"
-          echo $ID_TOKEN | cut -d '.' -f2 | base64 --decode | jq
-      
       # Authenticate към GCP чрез WIF
       - name: Authenticate to Google Cloud
         uses: google-github-actions/auth@v2
