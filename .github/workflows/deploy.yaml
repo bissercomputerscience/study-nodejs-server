@@ -22,12 +22,20 @@ jobs:
       - name: Unset old credentials
         run: unset GOOGLE_APPLICATION_CREDENTIALS
 
+        env:
+          GITHUB_ID_TOKEN_REQUEST_URL: ${{ steps.auth.outputs.id_token_request_url }}
+          GITHUB_ID_TOKEN_REQUEST_TOKEN: ${{ steps.auth.outputs.id_token_request_token }}
+          run: |
+            echo "Fetching raw OIDC token from GitHub..."
+            TOKEN=$(curl -s -H "Authorization: Bearer $GITHUB_ID_TOKEN_REQUEST_TOKEN" "$GITHUB_ID_TOKEN_REQUEST_URL")
+            echo $TOKEN | cut -d '.' -f2 | base64 --decode | jq
+
       - name: Print OIDC ID Token payload
         run: |
           ID_TOKEN=$(gcloud auth print-identity-token --audiences "https://token.actions.githubusercontent.com")
           echo "ID Token payload:"
           echo $ID_TOKEN | cut -d '.' -f2 | base64 --decode | jq
-      
+
       # Authenticate към GCP чрез WIF
       - name: Authenticate to Google Cloud
         uses: google-github-actions/auth@v2
